@@ -16,8 +16,8 @@ jobs:
       uses: appleboy/jenkins-action@master
       with:
         url: "http://54.167.63.180:8080"
-        user: "admin"
-        token: piplinedemon1token
+        user: "jenkins"
+        token: ${{ secrets.jenkins }}
         job: "Pipelinedemo1"
 
 
