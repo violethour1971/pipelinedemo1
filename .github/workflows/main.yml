@@ -1,0 +1,23 @@
+name: pipelinedemo1
+
+on:
+  pull_request:
+    branches: [ master ]
+    types: [ opened ]
+
+  # can run manually for testing
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: trigger Jenkins to compile
+      uses: appleboy/jenkins-action@master
+      with:
+        url: "http://54.167.63.180:8080"
+        user: "admin"
+        token: ${{ secrets.TOKEN }}
+        job: "Pipelinedemo1"
+
+
