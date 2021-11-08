@@ -1,11 +1,18 @@
 pipeline {
     agent any 
     stages {
-        stage('Stage 1') {
+        stage('Linting') {
             steps {
-                echo 'Initialization'
+                echo 'Linting ...'
                 sh 'date >> ./pipelinedemo1_shell_output.txt'
-                echo 'Finished'
+                sh 'gcc -c -fsyntax-only ./uptime.c'
+            }
+        }
+        stage('Compiling') {
+            steps {
+                echo 'Compiling ...'
+                sh 'date >> ./pipelinedemo1_shell_output.txt'
+                sh 'gcc ./uptime.c'
             }
         }
     }
