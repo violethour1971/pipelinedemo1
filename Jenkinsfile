@@ -4,6 +4,7 @@ pipeline {
         stage('Linting') {
             steps {
                 echo 'Linting ...'
+                sh 'echo "Linting step" >> ./pipelinedemo1_shell_output.txt'
                 sh 'date >> ./pipelinedemo1_shell_output.txt'
                 sh 'gcc -c -fsyntax-only ./uptime.c'
             }
@@ -11,6 +12,7 @@ pipeline {
         stage('Compiling') {
             steps {
                 echo 'Compiling ...'
+                sh 'echo "Compiling step" >> ./pipelinedemo1_shell_output.txt'
                 sh 'date >> ./pipelinedemo1_shell_output.txt'
                 sh 'gcc ./uptime.c'
             }
