@@ -1,0 +1,13 @@
+pipeline {
+    agent any 
+    stages {
+        stage('Deploy') {
+            steps {
+                echo 'Deploying ...'
+                sh 'echo "Deploying step" >> ./pipelinedemo1b_shell_output.txt'
+                sh 'date >> ./pipelinedemo1b_shell_output.txt'
+                sh 'ansible-playbook -i ./inventory.yaml --private-key /var/lib/jenkins/ansible_private_key -b playbook_deploy_software.yaml'
+            }
+        }
+    }
+}

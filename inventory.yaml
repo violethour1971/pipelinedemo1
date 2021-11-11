@@ -1,0 +1,14 @@
+all:
+  children:
+    servers:
+      hosts:
+        ec2-75-101-201-53.compute-1.amazonaws.com:
+          ansible_user: ansible
+          destination: "/usr/local/sbin/myuptime"
+    workstations:
+      hosts:
+        ec2-184-72-114-144.compute-1.amazonaws.com:
+          ansible_user: ansible
+          destination: "/usr/local/bin/myuptime"
+
+

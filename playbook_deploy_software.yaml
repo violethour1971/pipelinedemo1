@@ -1,0 +1,61 @@
+---
+
+- name: Deploy our software
+  hosts: servers
+         workstations
+  tasks:
+
+    - name: Display the destination
+      debug:
+        msg: "The destination is {{ destination }}"
+      when: destination is defined
+
+    - name: Run the id command
+      ansible.builtin.shell: id
+      args:
+        executable: /bin/bash
+      register: result_id
+
+    - name: Print return information from the previous task
+      ansible.builtin.debug:
+        var: result_id
+
+    - name: Copy file with owner and permissions
+      ansible.builtin.copy:
+        src: ./a.out
+        dest: "{{ destination }}"
+        owner: root
+        group: root
+        mode: '0755'
+      when: destination is defined
+      register: result_copy
+      notify: Run software
+
+    - name: Print return information from the previous task
+      ansible.builtin.debug:
+        var: result_copy
+
+        ## cannot reference result_handler here
+
+    - name: Ensure netcat is at the latest version
+      ansible.builtin.yum:
+        name: nmap-ncat
+        state: latest
+      register: result_yum
+
+    - name: Print return information from the previous task
+      ansible.builtin.debug:
+        var: result_yum
+
+  handlers:
+  - name: Run software
+    ansible.builtin.shell: "{{ destination }}"
+    args:
+      executable: /bin/bash
+    register: result_handler
+    notify: Print handler_result
+
+  - name: Print handler_result
+    ansible.builtin.debug:
+      var: result_handler
+
