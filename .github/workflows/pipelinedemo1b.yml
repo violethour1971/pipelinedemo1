@@ -1,0 +1,19 @@
+name: pipelinedemo1b
+
+on:
+  pull_request:
+    branches: [ master ]
+    types: [ closed ]
+
+  # can run manually for testing
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: trigger Jenkins to deploy software
+      run: >
+             echo -e 'GET /job/Pipelinedemo1b/build?token=pipelinedemo1token HTTP/1.0\n' 
+             | nc -v 54.167.63.180 8080 
+ 
