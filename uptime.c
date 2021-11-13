@@ -18,7 +18,7 @@ long get_uptime()
 
 int main()
 {
-    printf("This simple program just gets the system uptime\n");
+    printf("This simple program just gets the system uptime!\n");
     printf("Uptime results: %ld\n", get_uptime());
     return 0;
 }
