@@ -14,8 +14,7 @@ jobs:
     steps:
     - name: trigger Jenkins to compile
       run: >
-             echo -e 'POST /job/Pipelinedemo1/build?token=pipelinedemo1token HTTP/1.0\n' 
-             | nc -v 34.224.166.84 8080 
+             curl -v -X  POST http://34.224.166.84:8080/job/Pipelinedemo1/build --user admin:112933f450aa060007f14a5c63b17f83b5 
      # run: echo -e "GET /job/Pipelinedemo1/build?token=pipelinedemo1token HTTP/1.0\nhost: http://54.167.63.180:8080/\nConnection: close\n\n" | nc -v 54.167.63.180 8080
     - name: test bad exit code
       run: exit 0 # use 3 to verify fails PR
