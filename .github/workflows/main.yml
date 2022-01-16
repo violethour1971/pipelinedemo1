@@ -10,3 +10,5 @@ jobs:
     steps:
     - name: trigger Jenkins to compile
       run: curl -v -X POST http://54.227.193.220:8080/job/Pipelinedemo1/build --user admin:1130177aa71c9212e0c2c03955c74c54f6
+    - name: exit unsuccessful
+      run: exit 2
