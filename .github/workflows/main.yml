@@ -9,4 +9,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: trigger Jenkins to compile
-      run: echo "hi"
+      run: uname -a; ip link show; free -m 
