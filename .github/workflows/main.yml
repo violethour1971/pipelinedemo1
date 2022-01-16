@@ -1,0 +1,12 @@
+name: pipelinedemo1
+on:
+  pull_request:
+    branches: [ master ]
+    types: [ opened ]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: trigger Jenkins to compile
+      run: echo "hi"
